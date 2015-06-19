@@ -78,7 +78,7 @@ namespace Logica
                 {
                     if ((contadorFinTotales - 1) < contadorFin)
                     {
-                        erroresEncontrados += "Error Sintáctico: Se espera la palabra 'EMD' en la estructura principal del código." + Environment.NewLine;
+                        erroresEncontrados += "Error Sintáctico: Se espera la palabra 'END' en la estructura principal del código." + Environment.NewLine;
                     }
                     else 
                     {
