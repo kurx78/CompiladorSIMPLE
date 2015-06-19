@@ -114,4 +114,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccionesIDE_GuardarComo_Archivos_simple___simple" xml:space="preserve">
+    <value>Archivos simple|*.simple</value>
+  </data>
+  <data name="AccionesIDE_AbrirArchivo_Archivos_simple___simple" xml:space="preserve">
+    <value>Archivos simple|*.simple</value>
+  </data>
+  <data name="AccionesIDE_AbrirArchivo_Abrir_Proyecto" xml:space="preserve">
+    <value>Abrir Proyecto</value>
+  </data>
 </root>
