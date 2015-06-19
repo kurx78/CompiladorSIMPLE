@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.IO;
 
 namespace Logica
@@ -11,6 +12,7 @@ namespace Logica
 
         #region Métodos
 
+        
         public string CompilarCodigoFuente(string codFuente, ArrayList tablaSimbolos) 
         {
             listaTS = tablaSimbolos;
@@ -36,7 +38,7 @@ namespace Logica
                     if (!instruccion.StartsWith("--") && !instruccion.EndsWith("--"))
                     {
                         //El siguiente metodo quita los espacios en blanco y las tabulaciones de mas que tiene el metodo
-                        instruccion = OptimizadorCodigo(instruccion);
+                        instruccion = OptimizarCodigoIntermedio(instruccion);
                         erroresEncontrados += lexico.AnalisisLexico(instruccion, listaTS, numLinea);
                         erroresEncontrados += sintactico.AnalizarSintaxis(instruccion, listaTS, codFuente, numLinea);
                         erroresEncontrados += semantico.AnalizarSemantica(instruccion, listaTS, codFuente, numLinea);
