@@ -6,7 +6,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using Microsoft.CSharp;
 
-namespace Logica
+namespace CompiladorSIMPLE
 {
     public class ControlLenguajeIntermedio
     {
