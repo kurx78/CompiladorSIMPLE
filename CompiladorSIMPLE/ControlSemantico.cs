@@ -52,7 +52,7 @@ namespace Logica
                     else 
                     {
                         //si la linea en analisis no cumple con el formato, se verifica que en el analizador sintactico no hubo errores para mostrar el mensaje
-                        if (Compilador.verificarSintaxis == false)
+                        if (Compilador.VerificarSintaxis == false)
                         {
                             erroresEncontrados += "Error Semántico: Línea " + numLinea + ". Valor inválido para la definición '" + lineaAnalisis + "'." + Environment.NewLine;
                         }
@@ -97,7 +97,7 @@ namespace Logica
                     else
                     {
                         //si la linea en analisis no cumple con el formato, se verifica que en el analizador sintactico no hubo errores para mostrar el mensaje
-                        if (Compilador.verificarSintaxis == false)
+                        if (Compilador.VerificarSintaxis == false)
                         {
                             erroresEncontrados += "Error Semántico: Línea " + numLinea + ". Valor inválido para la definición '" + lineaAnalisis + "'." + Environment.NewLine;
                         }
@@ -150,7 +150,7 @@ namespace Logica
                     else
                     {
                         //si la linea en analisis no cumple con el formato, se verifica que en el analizador sintactico no hubo errores para mostrar el mensaje
-                        if (Compilador.verificarSintaxis == false)
+                        if (Compilador.VerificarSintaxis == false)
                         {
                             //se obtiene el o los valor que esta entre el signo de '=' y el ';'
                             string[] valor = valores.Split(new char[] { ' ' });
@@ -173,7 +173,7 @@ namespace Logica
                     if (!Regex.IsMatch(lineaAnalisis, expRegular))
                     {
                         //si la linea en analisis no cumple con el formato, se verifica que en el analizador sintactico no hubo errores para mostrar el mensaje
-                        if (Compilador.verificarSintaxis == false)
+                        if (Compilador.VerificarSintaxis == false)
                         {
                             int inicio = lineaAnalisis.IndexOf("=");
                             int fin = lineaAnalisis.IndexOf(";");
@@ -216,7 +216,7 @@ namespace Logica
                     if (!Regex.IsMatch(lineaAnalisis, expRegular))
                     {
                         //si la linea en analisis no cumple con el formato, se verifica que en el analizador sintactico no hubo errores para mostrar el mensaje
-                        if (Compilador.verificarSintaxis == false)
+                        if (Compilador.VerificarSintaxis == false)
                         {
                             int inicio = lineaAnalisis.IndexOf("=");
                             int fin = lineaAnalisis.IndexOf(";");
@@ -447,7 +447,7 @@ namespace Logica
                         {
                             if (!(lineaAnalisis.StartsWith("START") || lineaAnalisis.StartsWith("END")))
                             {
-                                if (Compilador.verificarSintaxis == false)
+                                if (Compilador.VerificarSintaxis == false)
                                 {
                                     erroresEncontrados += "Error Sintáctico aqui: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
                                 }

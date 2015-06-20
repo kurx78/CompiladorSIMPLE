@@ -6,16 +6,15 @@ namespace Logica
 {
     public class Compilador
     {
-        //almacena el contenido de la tabla de simbolos
-        static ArrayList listaTS;
-        public static bool verificarSintaxis = false;
+        static ArrayList _listaTs;
+        public static bool VerificarSintaxis = false;
 
         #region Métodos
 
         
         public string CompilarCodigoFuente(string codFuente, ArrayList tablaSimbolos) 
         {
-            listaTS = tablaSimbolos;
+            _listaTs = tablaSimbolos;
             //Pasamos por parametro el codigo fuente para obtener linea por linea del codigo fuente
             StringReader leer = new StringReader(codFuente);
             //Se crea una instancia de cada analizador
@@ -31,7 +30,7 @@ namespace Logica
             {
                 //se quita el espacio en blanco del principio y final de la linea en analisis
                 instruccion = instruccion.Trim(' ', '\t');
-                verificarSintaxis = false;
+                VerificarSintaxis = false;
                 if (!(instruccion.Equals("") || instruccion.Equals("\t")))
                 {
                     //Si la instruccion no es un comentario se envia a los analizadores
@@ -39,9 +38,9 @@ namespace Logica
                     {
                         //El siguiente metodo quita los espacios en blanco y las tabulaciones de mas que tiene el metodo
                         instruccion = OptimizarCodigoIntermedio(instruccion);
-                        erroresEncontrados += lexico.AnalisisLexico(instruccion, listaTS, numLinea);
-                        erroresEncontrados += sintactico.AnalizarSintaxis(instruccion, listaTS, codFuente, numLinea);
-                        erroresEncontrados += semantico.AnalizarSemantica(instruccion, listaTS, codFuente, numLinea);
+                        erroresEncontrados += lexico.AnalisisLexico(instruccion, _listaTs, numLinea);
+                        erroresEncontrados += sintactico.AnalizarSintaxis(instruccion, _listaTs, codFuente, numLinea);
+                        erroresEncontrados += semantico.AnalizarSemantica(instruccion, _listaTs, codFuente, numLinea);
                         //si no se encuentra ningun error en los analizadores se ingresa las palabras necesarias en tabla de simbolos
                         if (erroresEncontrados.Equals(""))
                         {
@@ -87,7 +86,7 @@ namespace Logica
         {
             //se ingresa cada palabra que contiene la instruccion en el vector palabras 
             string[] palabras = linea.Split(new char[] { ' ', '\n', '\t' });
-            int numLineaTS = listaTS.Count;
+            int numLineaTS = _listaTs.Count;
 
             switch (palabras[0].ToString())
             {
@@ -99,7 +98,7 @@ namespace Logica
                     string valor = linea.Substring(inicio + 1, (fin - 1) - inicio);
                     valor = valor.Trim(' ');
                     //se ingresan los valores en la tabla de simbolos(ArrayList)
-                    listaTS.Add((numLineaTS + 1) + " " + palabras[1] + " " + "Identificador" + " " + "4" + " " + valor);
+                    _listaTs.Add((numLineaTS + 1) + " " + palabras[1] + " " + "Identificador" + " " + "4" + " " + valor);
                 }break;
                 case "TEXT":
                 {
@@ -109,7 +108,7 @@ namespace Logica
                     string valor = linea.Substring(inicio + 1, (fin - 1) - inicio);
                     valor = valor.Trim(' ');
                     //se ingresan los valores en la tabla de simbolos(ArrayList)
-                    listaTS.Add((numLineaTS + 1) + " " + palabras[1] + " " + "Identificador" + " " + "5" + " " + valor);
+                    _listaTs.Add((numLineaTS + 1) + " " + palabras[1] + " " + "Identificador" + " " + "5" + " " + valor);
                 } break;
                 case "DECIMAL": 
                 {
@@ -119,7 +118,7 @@ namespace Logica
                     string valor = linea.Substring(inicio + 1, (fin - 1) - inicio);
                     valor = valor.Trim(' ');
                     //se ingresan los valores en la tabla de simbolos(ArrayList)
-                    listaTS.Add((numLineaTS + 1) + " " + palabras[1] + " " + "Identificador" + " " + "6" + " " + valor); 
+                    _listaTs.Add((numLineaTS + 1) + " " + palabras[1] + " " + "Identificador" + " " + "6" + " " + valor); 
                 } break;
                 case "FLAG": 
                 {
@@ -129,7 +128,7 @@ namespace Logica
                     string valor = linea.Substring(inicio + 1, (fin - 1) - inicio);
                     valor = valor.Trim(' ');
                     //se ingresan los valores en la tabla de simbolos(ArrayList)
-                    listaTS.Add((numLineaTS + 1) + " " + palabras[1] + " " + "Identificador" + " " + "7" + " " + valor); 
+                    _listaTs.Add((numLineaTS + 1) + " " + palabras[1] + " " + "Identificador" + " " + "7" + " " + valor); 
                 }break;
                 case "CHAR":
                 {
@@ -139,7 +138,7 @@ namespace Logica
                     string valor = linea.Substring(inicio + 1, (fin - 1) - inicio);
                     valor = valor.Trim(' ');
                     //se ingresan los valores en la tabla de simbolos(ArrayList)
-                    listaTS.Add((numLineaTS + 1) + " " + palabras[1] + " " + "Identificador" + " " + "8" + " " + valor);
+                    _listaTs.Add((numLineaTS + 1) + " " + palabras[1] + " " + "Identificador" + " " + "8" + " " + valor);
                 } break;
             }
             
@@ -147,7 +146,7 @@ namespace Logica
         //el siguiente método se utiliza para poder acceder a la tabla de simbolos desde cualquier clase
         public static ArrayList RefTablaSimbolos() 
         {
-            return listaTS;
+            return _listaTs;
         }
 
         #endregion

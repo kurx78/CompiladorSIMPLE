@@ -138,12 +138,12 @@ namespace Logica
                     if (!Regex.IsMatch(lineaAnalisis, expRegular))
                     {
                         erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
-                        Compilador.verificarSintaxis = true;
+                        Compilador.VerificarSintaxis = true;
                     }
                     //se verifica que la cantidad de operandos coincida con la cantidad de operadores
                     if ((contOperador + 1) != contOperando)
                     {
-                        if (Compilador.verificarSintaxis == false)
+                        if (Compilador.VerificarSintaxis == false)
                         {
                             erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
                         }
@@ -184,12 +184,12 @@ namespace Logica
                     if (!Regex.IsMatch(lineaAnalisis, expRegular))
                     {
                         erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
-                        Compilador.verificarSintaxis = true;
+                        Compilador.VerificarSintaxis = true;
                     }
                     //se verifica que la cantidad de operandos coincida con la cantidad de operadores
                     if ((contOperador + 1) != contOperando)
                     {
-                        if (Compilador.verificarSintaxis == false)
+                        if (Compilador.VerificarSintaxis == false)
                         {
                             erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
                         }
@@ -229,7 +229,7 @@ namespace Logica
                     if (!Regex.IsMatch(lineaAnalisis, expRegular))
                     {
                         erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
-                        Compilador.verificarSintaxis = true;
+                        Compilador.VerificarSintaxis = true;
                     }
                     //si el contador de comillas no contiene un valor par quiere decir que faltan comillas en los valores
                     if (!((contComillas % 2) == 0))
@@ -246,7 +246,7 @@ namespace Logica
                         {
                             if ((contOperador + 1) != aux.Length)
                             {
-                                if (Compilador.verificarSintaxis == false)
+                                if (Compilador.VerificarSintaxis == false)
                                 {
                                     erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
                                 }
@@ -261,7 +261,7 @@ namespace Logica
                     if (!Regex.IsMatch(lineaAnalisis, expRegular))
                     {
                         erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
-                        Compilador.verificarSintaxis = true;
+                        Compilador.VerificarSintaxis = true;
                     }
                 }//si la linea de analisis inicia con 'bin '
                 else if (lineaAnalisis.StartsWith("FLAG "))
@@ -271,7 +271,7 @@ namespace Logica
                     if (!Regex.IsMatch(lineaAnalisis, expRegular))
                     {
                         erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las regla sintácticas del lenguaje." + Environment.NewLine;
-                        Compilador.verificarSintaxis = true;
+                        Compilador.VerificarSintaxis = true;
                     }
                 }//si la linea de analisis inicia con 'MostrarInfo '
                 else if (lineaAnalisis.StartsWith("PRINT ")) 
@@ -281,7 +281,7 @@ namespace Logica
                     if (!Regex.IsMatch(lineaAnalisis, expRegular))
                     {
                         erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las regla sintácticas del lenguaje." + Environment.NewLine;
-                        Compilador.verificarSintaxis = true;
+                        Compilador.VerificarSintaxis = true;
                     }
                 }//si la linea de analisis inicia con 'LeerInfo '
                 else if (lineaAnalisis.StartsWith("READTOEND "))
@@ -291,7 +291,7 @@ namespace Logica
                     if (!Regex.IsMatch(lineaAnalisis, expRegular))
                     {
                         erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las regla sintácticas del lenguaje." + Environment.NewLine;
-                        Compilador.verificarSintaxis = true;
+                        Compilador.VerificarSintaxis = true;
                     }
                 }
             }
@@ -301,7 +301,7 @@ namespace Logica
                 if (lineaAnalisis.StartsWith("INT ") || lineaAnalisis.StartsWith("DECIMAL ") || lineaAnalisis.StartsWith("TEXT ") || lineaAnalisis.StartsWith("CHAR ") || lineaAnalisis.StartsWith("FLAG "))
                 {
                     erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". Se esperaba ';' en la expresión '" + lineaAnalisis + "'." + Environment.NewLine;
-                    Compilador.verificarSintaxis = true;
+                    Compilador.VerificarSintaxis = true;
                 }
                 else 
                 {
