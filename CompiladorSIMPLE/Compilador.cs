@@ -18,6 +18,7 @@ namespace CompiladorSIMPLE
             var lexico = new ControlLexico();
             var sintactico = new ControlSintactico();
             var semantico = new ControlSemantico();
+            
             var numLinea = 1;
             var instruccion = "";
             var erroresEncontrados = "";
@@ -37,7 +38,7 @@ namespace CompiladorSIMPLE
                         erroresEncontrados += lexico.AnalisisLexico(instruccion, _listaTs, numLinea);
                         erroresEncontrados += sintactico.AnalizarSintaxis(instruccion, _listaTs, codFuente, numLinea);
                         //AnalisisSemantico DEsactivado temporalmente
-                        //erroresEncontrados += semantico.AnalizarSemantica(instruccion, _listaTs, codFuente, numLinea);
+                        erroresEncontrados += semantico.AnalizarSemantica(instruccion, _listaTs, codFuente, numLinea);
 
                         if (erroresEncontrados.Equals(""))
                         {

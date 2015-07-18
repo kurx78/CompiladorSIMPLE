@@ -7,8 +7,7 @@ namespace CompiladorSIMPLE
 {
     public class ControlSintactico
     {
-        //la siguiente variable sirve para validar que solo una vez se analice la estructura del codigo fuente y no se analice cada vez que entra
-        //cada linea del codigo fuente
+
         private bool _verificarEstructuras = false;
 
         #region Métodos
@@ -16,15 +15,13 @@ namespace CompiladorSIMPLE
         public string AnalizarSintaxis(string lineaAnalisis, ArrayList tablaSimbolos, string codFuente, int numLinea) 
         {
             string erroresEncontrados = "";
-            //Pasamos por parametro el codigo fuente para obtener linea por linea del codigo fuente
             StringReader leer = new StringReader(codFuente);
 
             if (_verificarEstructuras == false)
             {
-                //variable que sirve para verificar que la palabra inicio este dentro del codigo fuente
+ 
                 bool verificarInicio = false;
-                //se marca la varialbe en true para que solo analice la estructura del codigo fuente una sola vez
-                _verificarEstructuras = true;
+                //se marca la varialbe en true para que solo analice la estructura del codigo fuente una sola vez                _verificarEstructuras = true;
                 //la siguiente variable almacena la cantidad de delimitadores 'fin' que haya en el codigo fuente
                 int contadorFin = 0;
                 //indica la cantidad de delimitadores 'fin' que tiene que tener el codigo fuente
@@ -71,18 +68,18 @@ namespace CompiladorSIMPLE
                 //si la palabra inicio no existe en el codigo fuente se muestra el mensaje
                 if (verificarInicio == false)
                 {
-                    erroresEncontrados += "Error Sintáctico: Se espera la palabra 'START' en la estructura principal del código." + Environment.NewLine;
+                    erroresEncontrados += "Analisis de sintaxis - Se espera la palabra 'START' en la estructura principal del código." + Environment.NewLine;
                 }
                 //verifica que cada estructura tenga su delimitador 'fin'
                 if ((contadorFinTotales-1) != contadorFin)
                 {
                     if ((contadorFinTotales - 1) < contadorFin)
                     {
-                        erroresEncontrados += "Error Sintáctico: Se espera la palabra 'END' en la estructura principal del código." + Environment.NewLine;
+                        erroresEncontrados += "Analisis de sintaxis - Se espera la palabra 'END' en la estructura principal del código." + Environment.NewLine;
                     }
                     else 
                     {
-                        erroresEncontrados += "Error Sintáctico: La palabra 'END' no coincide con el número de estructuras." + Environment.NewLine;
+                        erroresEncontrados += "Analisis de sintaxis - La palabra 'END' no coincide con el número de estructuras." + Environment.NewLine;
                     }
                 }
                 //verifica que si hay una palabra 'sino' previamente deberia estar la instruccion 'si condicion entonces'
@@ -92,7 +89,7 @@ namespace CompiladorSIMPLE
                     {
                         if (contSino > contSi)
                         {
-                            erroresEncontrados += "Error Sintáctico: El término de la expresión 'ALTERNATE' no es válido." + Environment.NewLine;
+                            erroresEncontrados += "Analisis de sintaxis - El término de la expresión 'ALTERNATE' no es válido." + Environment.NewLine;
                         }
                     }
                 }
@@ -137,7 +134,7 @@ namespace CompiladorSIMPLE
                     //se verifica que la linea de analisis cumpla con el formato de la expresion regular
                     if (!Regex.IsMatch(lineaAnalisis, expRegular))
                     {
-                        erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
+                        erroresEncontrados += "Analisis de sintaxis - linea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
                         Compilador.VerificarSintaxis = true;
                     }
                     //se verifica que la cantidad de operandos coincida con la cantidad de operadores
@@ -145,7 +142,7 @@ namespace CompiladorSIMPLE
                     {
                         if (Compilador.VerificarSintaxis == false)
                         {
-                            erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
+                            erroresEncontrados += "Analisis de sintaxis - linea" + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
                         }
                     }
                 }//si la linea de analisis inicia con 'dob '
@@ -183,7 +180,7 @@ namespace CompiladorSIMPLE
                     //se verifica que la linea de analisis cumpla con el formato de la expresion regular
                     if (!Regex.IsMatch(lineaAnalisis, expRegular))
                     {
-                        erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
+                        erroresEncontrados += "Analisis de sintaxis - linea" + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
                         Compilador.VerificarSintaxis = true;
                     }
                     //se verifica que la cantidad de operandos coincida con la cantidad de operadores
@@ -191,7 +188,7 @@ namespace CompiladorSIMPLE
                     {
                         if (Compilador.VerificarSintaxis == false)
                         {
-                            erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
+                            erroresEncontrados += "Analisis de sintaxis -  " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
                         }
                     }
                 }//si la linea de analisis inicia con 'dob '
@@ -228,13 +225,13 @@ namespace CompiladorSIMPLE
                     //se verifica que la linea de analisis cumpla con el formato de la expresion regular
                     if (!Regex.IsMatch(lineaAnalisis, expRegular))
                     {
-                        erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
+                        erroresEncontrados += "Analisis de sintaxis - linea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
                         Compilador.VerificarSintaxis = true;
                     }
                     //si el contador de comillas no contiene un valor par quiere decir que faltan comillas en los valores
                     if (!((contComillas % 2) == 0))
                     {
-                        erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
+                        erroresEncontrados += "Analisis de sintaxis - linea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
                     }
                     //se obtiene la cantidad de valores que hay en la definicion. Es decir en cada valor debe haber 2 comillas(una de apertura y otra de cierre)
                     //Por ejemplo si hay 4 comillas al dividirlo por 2 nos dara la cantidad de valores que hay en la definicion 
@@ -248,7 +245,7 @@ namespace CompiladorSIMPLE
                             {
                                 if (Compilador.VerificarSintaxis == false)
                                 {
-                                    erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
+                                    erroresEncontrados += "Analisis de sintaxis - linea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
                                 }
                             }
                         }    
@@ -260,7 +257,7 @@ namespace CompiladorSIMPLE
                     string expRegular = "^(CHAR)(\\s)[a-zA-Z][a-zA-Z0-9]*(\\s)=(\\s).{1,}(\\s)(;)$";
                     if (!Regex.IsMatch(lineaAnalisis, expRegular))
                     {
-                        erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
+                        erroresEncontrados += "Analisis de sintaxis - linea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
                         Compilador.VerificarSintaxis = true;
                     }
                 }//si la linea de analisis inicia con 'bin '
@@ -270,7 +267,7 @@ namespace CompiladorSIMPLE
                     string expRegular = "^(FLAG)(\\s)[a-zA-Z][a-zA-Z0-9]*(\\s)=(\\s).{1,}(\\s)(;)$";
                     if (!Regex.IsMatch(lineaAnalisis, expRegular))
                     {
-                        erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las regla sintácticas del lenguaje." + Environment.NewLine;
+                        erroresEncontrados += "Analisis de sintaxis - linea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las regla sintácticas del lenguaje." + Environment.NewLine;
                         Compilador.VerificarSintaxis = true;
                     }
                 }//si la linea de analisis inicia con 'MostrarInfo '
@@ -280,7 +277,7 @@ namespace CompiladorSIMPLE
                     string expRegular = @"^(PRINT)(\s)(\()(\s).{1,}(\s)(\))(\s);$";
                     if (!Regex.IsMatch(lineaAnalisis, expRegular))
                     {
-                        erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las regla sintácticas del lenguaje." + Environment.NewLine;
+                        erroresEncontrados += "Analisis de sintaxis - linea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las regla sintácticas del lenguaje." + Environment.NewLine;
                         Compilador.VerificarSintaxis = true;
                     }
                 }//si la linea de analisis inicia con 'LeerInfo '
@@ -290,7 +287,7 @@ namespace CompiladorSIMPLE
                     string expRegular = @"^(READTOEND)(\s)(\()(\s)(\))(\s);$";
                     if (!Regex.IsMatch(lineaAnalisis, expRegular))
                     {
-                        erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las regla sintácticas del lenguaje." + Environment.NewLine;
+                        erroresEncontrados += "Analisis de sintaxis - linea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las regla sintácticas del lenguaje." + Environment.NewLine;
                         Compilador.VerificarSintaxis = true;
                     }
                 }
@@ -300,7 +297,7 @@ namespace CompiladorSIMPLE
                 //si la instruccion inicia con ent, dob, cad, car y bin quiere decir que falta el ;
                 if (lineaAnalisis.StartsWith("INT ") || lineaAnalisis.StartsWith("DECIMAL ") || lineaAnalisis.StartsWith("TEXT ") || lineaAnalisis.StartsWith("CHAR ") || lineaAnalisis.StartsWith("FLAG "))
                 {
-                    erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". Se esperaba ';' en la expresión '" + lineaAnalisis + "'." + Environment.NewLine;
+                    erroresEncontrados += "Analisis de sintaxis - linea " + numLinea + ". Se esperaba ';' en la expresión '" + lineaAnalisis + "'." + Environment.NewLine;
                     Compilador.VerificarSintaxis = true;
                 }
                 else 
@@ -315,7 +312,7 @@ namespace CompiladorSIMPLE
                             string expRegular = "^(EVAL)(\\s)(([a-zA-Z0-9])|(\\d{1,}\\.\\d{1,})|((\")[\\w\\s\\W]*(\"))|((')[\\w\\s\\W]?(')))+(\\s)((<|>)|(!=|<=|>=|==)){1}(\\s)(([a-zA-Z0-9])|(\\d{1,}\\.\\d{1,})|((\")[\\w\\s\\W]*(\"))|((')[\\w\\s\\W]?(')))+(\\s)(THEN)$"; 
                             if (!Regex.IsMatch(lineaAnalisis,expRegular))
                             {
-                                erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
+                                erroresEncontrados += "Analisis de sintaxis - linea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
                             }
                         }// si la instruccion inicia con mientras condicion hacer
                         if (lineaAnalisis.StartsWith("LOOP "))
@@ -324,7 +321,7 @@ namespace CompiladorSIMPLE
                             string expRegular = "^(LOOP)(\\s)(([a-zA-Z0-9])|(\\d{1,}\\.\\d{1,})|((\")[\\w\\s\\W]*(\"))|((')[\\w\\s\\W]?(')))+(\\s)((<|>)|(!=|<=|>=|==)){1}(\\s)(([a-zA-Z0-9])|(\\d{1,}\\.\\d{1,})|((\")[\\w\\s\\W]*(\"))|((')[\\w\\s\\W]?(')))+(\\s)(DO)$";
                             if (!Regex.IsMatch(lineaAnalisis, expRegular))
                             {
-                                erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
+                                erroresEncontrados += "Analisis de sintaxis - linea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
                             }
                         }
                         if (lineaAnalisis.Equals("ALTERNATE"))
@@ -333,7 +330,7 @@ namespace CompiladorSIMPLE
                             string expRegular = "^(ALTERNATE)$";
                             if (!Regex.IsMatch(lineaAnalisis, expRegular))
                             {
-                                erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
+                                erroresEncontrados += "Analisis de sintaxis - linea " + numLinea + ". La expresión '" + lineaAnalisis + "' no cumple las reglas sintácticas del lenguaje." + Environment.NewLine;
                             }
                         }
                     }
@@ -341,13 +338,13 @@ namespace CompiladorSIMPLE
                     {
                         if (lineaAnalisis.StartsWith("INT ") || lineaAnalisis.StartsWith("DECIMAL ") || lineaAnalisis.StartsWith("TEXT ") || lineaAnalisis.StartsWith("CHAR ") || lineaAnalisis.StartsWith("FLAG "))
                         {
-                            erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". Se espera un identificador en la expresión '" + lineaAnalisis + Environment.NewLine;
+                            erroresEncontrados += "Analisis de sintaxis - linea " + numLinea + ". Se espera un identificador en la expresión '" + lineaAnalisis + Environment.NewLine;
                         }
                         else 
                         {
                             if (!(lineaAnalisis.StartsWith("START") || lineaAnalisis.StartsWith("END")))
                             {
-                                erroresEncontrados += "Error Sintáctico: Línea " + numLinea + ". Se esperaba ';' en la expresión '" + lineaAnalisis + "'." + Environment.NewLine;
+                                erroresEncontrados += "Analisis de sintaxis - linea " + numLinea + ". Se esperaba ';' en la expresión '" + lineaAnalisis + "'." + Environment.NewLine;
                             }
                         }
                     }
